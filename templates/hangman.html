@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hangman Game</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add your custom CSS here -->
+    <style>
+        /* Customize your styles here */
+        body {
+            background-color: #f0f0f0;
+        }
+        .navbar {
+            background-color: #3498db;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 36px;
+        }
+        p {
+            font-size: 18px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        .message-area {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
+            color: #FF0000; /* Red color for the message */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <!-- Add your shining Hangman logo here -->
+        <a class="navbar-brand" href="#">
+            <h3 class="text-white">Hangman</h3>
+        </a>
+        <!-- Add a button to toggle the navigation links -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Add links in the navbar -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#link1">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#link2">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#link3">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#link4">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h1 class="text-center">Hangman Game</h1>
+    <p class="text-center">Incorrect Guesses: {{ incorrect_guesses }}</p>
+    <p class="text-center">Guessed Letters: {{ guessed_letters }}</p>
+    <p class="text-center">Word: {{ word }}</p>
+    <!-- Add a message area to display game messages -->
+    <div class="message-area" id="game-message">{{ message }}</div>
+</div>
+
+<div class="message-area" id="game-message">
+    {% if message %}
+        <p class="{% if message_success %}text-success{% else %}text-danger{% endif %}">
+            {{ message }}
+        </p>
+    {% endif %}
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form method="POST" action="{% url 'hangman-url' %}">
+                {% csrf_token %}
+                <div class="form-group d-flex justify-content-center">
+                    <input type="text" name="letter" maxlength="1" class="form-control border-0">
+                </div>
+                <button type="submit" class="btn btn-warning text-info btn-block mt-3">Guess</button>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<!-- Add Bootstrap and your custom JavaScript scripts here -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Your JavaScript code for the Hangman game can go here
+    // No changes are needed for the JavaScript code as it remains the same.
+</script>
+</body>
+</html>
